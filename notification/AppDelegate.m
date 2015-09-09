@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "EspViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,13 +18,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound)];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+                                                                             settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+                                                                             categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound)];
+    }
     
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertBody = @"alertBody";
-    notification.alertAction = @"alertAction";
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     return YES;
 }
 
@@ -52,11 +58,39 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSLog(@"My token is: %@", deviceToken);
+    
+    // update my token in UI
+    EspViewController *vc = (EspViewController *)self.window.rootViewController;
+    NSString *token = [self getHexStringByData:deviceToken];
+    NSLog(@"label token: %@",token);
+    vc.labelToken.text = token;
+}
+
+- (NSString *) getHexStringByData:(NSData *)data
+{
+    NSMutableString* mStr = [[NSMutableString alloc]init];
+    NSUInteger totalLen = [data length];
+    Byte bytes[totalLen];
+    [data getBytes:&bytes length:totalLen];
+    for (int i = 0; i < totalLen; i++)
+    {
+        if (i!=0 && i%4==0)
+        {
+            [mStr appendString:@" "];
+        }
+        NSString *hexString = [[NSString alloc]initWithFormat:@"%.2x",bytes[i]];
+        [mStr appendString:hexString];
+    }
+    return mStr;
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     NSLog(@"Failed to get token, error: %@", error);
+    
+    // update my token in UI
+    EspViewController *vc = (EspViewController *)self.window.rootViewController;
+    vc.labelToken.text = [NSString stringWithFormat:@"Failed to get token, error: %@",error];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo

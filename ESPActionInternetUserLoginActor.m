@@ -17,6 +17,13 @@
                                                password : (NSString *) password
 {
     NSLog(@"doActionInternetUserLoginWithEmail::email=%@,password=%@",email,password);
+    
+    // check whether email is empty
+    if ([email length] == 0)
+    {
+        return LOGIN_NOT_REGISTER;
+    }
+    
     // generate http body
     NSDictionary *httpBody = [NSDictionary dictionaryWithObjectsAndKeys:email, ESP_CONSTANTS_EMAIL, password,ESP_CONSTANTS_PASSWORD,ESP_CONSTANTS_USER,ESP_CONSTANTS_SCOPE,nil];
     // get http response

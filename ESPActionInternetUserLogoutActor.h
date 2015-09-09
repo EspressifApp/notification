@@ -12,7 +12,7 @@
 @protocol ESPActionInternetUserLogoutDelegate <NSObject>
 
 /**
- * Logout in http://iot.espressif.cn
+ * Logout out http://iot.espressif.cn
  *
  * @return ESPLoginResultEnum
  */

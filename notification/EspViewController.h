@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EspViewController : UIViewController
+@interface EspViewController : UIViewController<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextView *labelToken;
 
 @end
