@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "EspViewController.h"
+#import "ESPUser.h"
 
 @interface AppDelegate ()
 
@@ -49,6 +50,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // remove badge when ios become active
+    NSLog(@"applicationDidBecomeActive: remove badge");
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -64,6 +69,9 @@
     NSString *token = [self getHexStringByData:deviceToken];
     NSLog(@"label token: %@",token);
     vc.labelToken.text = token;
+    
+    ESPUser *user = [ESPUser sharedInstance];
+    user.deviceToken = token;
 }
 
 - (NSString *) getHexStringByData:(NSData *)data
@@ -74,10 +82,6 @@
     [data getBytes:&bytes length:totalLen];
     for (int i = 0; i < totalLen; i++)
     {
-        if (i!=0 && i%4==0)
-        {
-            [mStr appendString:@" "];
-        }
         NSString *hexString = [[NSString alloc]initWithFormat:@"%.2x",bytes[i]];
         [mStr appendString:hexString];
     }

@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 白 桦. All rights reserved.
 //
 
-#import "ESPActionInternetUserLoginActor.h"
+#import "ESPActionInternetUserLogin.h"
 #import "ESPHttpClient.h"
 #import "ESPUser.h"
-#include "EspUrlConstants.h"
+#import "EspUrlConstants.h"
 
-@implementation ESPActionInternetUserLoginActor
+@implementation ESPActionInternetUserLogin
 
 -(ESPLoginResultEnum) doActionInternetUserLoginWithEmail: (NSString *) email
                                                password : (NSString *) password
@@ -35,13 +35,12 @@
     }
     // process http response
     NSNumber *status = [httpResponse objectForKey:ESP_CONSTANTS_STATUS];
-    NSArray *keys = [httpResponse objectForKey:ESP_CONSTANTS_KEYS];
+    NSDictionary *key = [httpResponse objectForKey:ESP_CONSTANTS_KEY];
     ESPLoginResultEnum result = [status intValue];
     switch (result)
     {
         case LOGIN_SUC:
         {
-            NSDictionary *key = [keys objectAtIndex:0];
             NSString *userKey = [key objectForKey:ESP_CONSTANTS_TOKEN];
             NSNumber *userId = [key objectForKey:ESP_CONSTANTS_USER_ID];
             ESPUser *user = [ESPUser sharedInstance];

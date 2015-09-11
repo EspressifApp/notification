@@ -9,23 +9,21 @@
 #import <Foundation/Foundation.h>
 
 #include "EspEnum.h"
-#include "ESPActionInternetUserLoginActor.h"
-#include "ESPActionInternetUserLogoutActor.h"
+#include "ESPActionInternetUserLogin.h"
+#include "EspActionInternetUserApnsRegister.h"
+#include "EspActionInternetUserApnsUnregister.h"
 
-@interface ESPUser : NSObject<ESPActionInternetUserLoginDelegate>
+@interface ESPUser : NSObject<ESPActionInternetUserLoginDelegate,EspActionInternetUserApnsRegisterDelegate,EspActionInternetUserApnsUnregisterDelegate>
 
 + (ESPUser *) sharedInstance;
 
-@property (nonatomic,copy) NSString *userName;
-@property (nonatomic,copy) NSString *userKey;
-@property (nonatomic,copy) NSString *userEmail;
-@property (nonatomic,copy) NSString *userPassword;
-@property (nonatomic,assign) long userId;
-@property (nonatomic,strong) NSMutableArray *deviceList;
-
--(ESPLoginResultEnum) doActionInternetUserLoginWithEmail: (NSString *) email
-                                               password : (NSString *) password;
-
--(ESPLogoutResultEnum) doActionInternetUserLogout;
+@property (atomic,copy) NSString *userName;
+@property (atomic,copy) NSString *userKey;
+@property (atomic,copy) NSString *userEmail;
+@property (atomic,copy) NSString *userPassword;
+@property (atomic,assign) long userId;
+@property (atomic,strong) NSMutableArray *deviceList;
+@property (atomic,strong) NSString *apnsToken;
+@property (atomic,strong) NSString *deviceToken;
 
 @end

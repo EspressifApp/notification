@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		073ED0591BA0046A00F0A39D /* ESPHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED0581BA0046A00F0A39D /* ESPHttpClient.m */; };
 		073ED05D1BA00B2F00F0A39D /* ESPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED05C1BA00B2F00F0A39D /* ESPUser.m */; };
-		073ED0621BA00D8300F0A39D /* ESPActionInternetUserLoginActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED0611BA00D8300F0A39D /* ESPActionInternetUserLoginActor.m */; };
+		073ED0621BA00D8300F0A39D /* ESPActionInternetUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED0611BA00D8300F0A39D /* ESPActionInternetUserLogin.m */; };
 		073ED0681BA0139B00F0A39D /* EspViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED0671BA0139B00F0A39D /* EspViewController.m */; };
-		073ED06E1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED06D1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.m */; };
+		07CD440B1BA187F400D30921 /* EspActionInternetUserApnsRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD440A1BA187F400D30921 /* EspActionInternetUserApnsRegister.m */; };
+		07CD440E1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD440D1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m */; };
 		07FE88941B9D88DC00309C51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE88931B9D88DC00309C51 /* main.m */; };
 		07FE88971B9D88DC00309C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE88961B9D88DC00309C51 /* AppDelegate.m */; };
 		07FE889D1B9D88DC00309C51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07FE889B1B9D88DC00309C51 /* Main.storyboard */; };
@@ -37,13 +38,15 @@
 		073ED05C1BA00B2F00F0A39D /* ESPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPUser.m; sourceTree = "<group>"; };
 		073ED05E1BA00B4500F0A39D /* EspEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EspEnum.h; sourceTree = "<group>"; };
 		073ED05F1BA00C8800F0A39D /* EspHttpStatusConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EspHttpStatusConstants.h; sourceTree = "<group>"; };
-		073ED0601BA00D8300F0A39D /* ESPActionInternetUserLoginActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPActionInternetUserLoginActor.h; sourceTree = "<group>"; };
-		073ED0611BA00D8300F0A39D /* ESPActionInternetUserLoginActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPActionInternetUserLoginActor.m; sourceTree = "<group>"; };
+		073ED0601BA00D8300F0A39D /* ESPActionInternetUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPActionInternetUserLogin.h; sourceTree = "<group>"; };
+		073ED0611BA00D8300F0A39D /* ESPActionInternetUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPActionInternetUserLogin.m; sourceTree = "<group>"; };
 		073ED0661BA0139B00F0A39D /* EspViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspViewController.h; sourceTree = "<group>"; };
 		073ED0671BA0139B00F0A39D /* EspViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EspViewController.m; sourceTree = "<group>"; };
 		073ED0691BA0156000F0A39D /* EspUrlConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EspUrlConstants.h; sourceTree = "<group>"; };
-		073ED06C1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESPActionInternetUserLogoutActor.h; sourceTree = "<group>"; };
-		073ED06D1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESPActionInternetUserLogoutActor.m; sourceTree = "<group>"; };
+		07CD44091BA187F400D30921 /* EspActionInternetUserApnsRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspActionInternetUserApnsRegister.h; sourceTree = "<group>"; };
+		07CD440A1BA187F400D30921 /* EspActionInternetUserApnsRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EspActionInternetUserApnsRegister.m; sourceTree = "<group>"; };
+		07CD440C1BA1880500D30921 /* EspActionInternetUserApnsUnregister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspActionInternetUserApnsUnregister.h; sourceTree = "<group>"; };
+		07CD440D1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EspActionInternetUserApnsUnregister.m; sourceTree = "<group>"; };
 		07FE888E1B9D88DC00309C51 /* notification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notification.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07FE88921B9D88DC00309C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07FE88931B9D88DC00309C51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,10 +81,8 @@
 		073ED05A1BA004E600F0A39D /* espdemo */ = {
 			isa = PBXGroup;
 			children = (
-				073ED0601BA00D8300F0A39D /* ESPActionInternetUserLoginActor.h */,
-				073ED0611BA00D8300F0A39D /* ESPActionInternetUserLoginActor.m */,
-				073ED06C1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.h */,
-				073ED06D1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.m */,
+				073ED0601BA00D8300F0A39D /* ESPActionInternetUserLogin.h */,
+				073ED0611BA00D8300F0A39D /* ESPActionInternetUserLogin.m */,
 				073ED05F1BA00C8800F0A39D /* EspHttpStatusConstants.h */,
 				073ED05E1BA00B4500F0A39D /* EspEnum.h */,
 				073ED0691BA0156000F0A39D /* EspUrlConstants.h */,
@@ -89,6 +90,10 @@
 				073ED05C1BA00B2F00F0A39D /* ESPUser.m */,
 				073ED0571BA0046A00F0A39D /* ESPHttpClient.h */,
 				073ED0581BA0046A00F0A39D /* ESPHttpClient.m */,
+				07CD44091BA187F400D30921 /* EspActionInternetUserApnsRegister.h */,
+				07CD440A1BA187F400D30921 /* EspActionInternetUserApnsRegister.m */,
+				07CD440C1BA1880500D30921 /* EspActionInternetUserApnsUnregister.h */,
+				07CD440D1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m */,
 			);
 			name = espdemo;
 			sourceTree = "<group>";
@@ -203,9 +208,15 @@
 					07FE888D1B9D88DC00309C51 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = QWY5DY832N;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					07FE88A61B9D88DD00309C51 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = QWY5DY832N;
 						TestTargetID = 07FE888D1B9D88DC00309C51;
 					};
 				};
@@ -255,11 +266,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				073ED05D1BA00B2F00F0A39D /* ESPUser.m in Sources */,
+				07CD440B1BA187F400D30921 /* EspActionInternetUserApnsRegister.m in Sources */,
 				073ED0591BA0046A00F0A39D /* ESPHttpClient.m in Sources */,
 				07FE88971B9D88DC00309C51 /* AppDelegate.m in Sources */,
-				073ED0621BA00D8300F0A39D /* ESPActionInternetUserLoginActor.m in Sources */,
+				073ED0621BA00D8300F0A39D /* ESPActionInternetUserLogin.m in Sources */,
 				07FE88941B9D88DC00309C51 /* main.m in Sources */,
-				073ED06E1BA024CA00F0A39D /* ESPActionInternetUserLogoutActor.m in Sources */,
+				07CD440E1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m in Sources */,
 				073ED0681BA0139B00F0A39D /* EspViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +331,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peiqi Huang (VM446K59DU)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -341,6 +353,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6f40a80a-00f9-4b3b-9b4b-bb164fc7cef8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -363,7 +376,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Peiqi Huang (VM446K59DU)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -378,6 +391,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "6f40a80a-00f9-4b3b-9b4b-bb164fc7cef8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -389,11 +403,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = notification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b62ed5cf-d2ab-47c8-96b1-c777614739d8";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -403,11 +418,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = notification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b62ed5cf-d2ab-47c8-96b1-c777614739d8";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -416,6 +432,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -427,6 +445,7 @@
 				INFOPLIST_FILE = notificationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notification.app/notification";
 			};
 			name = Debug;
@@ -435,6 +454,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -442,6 +463,7 @@
 				INFOPLIST_FILE = notificationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notification.app/notification";
 			};
 			name = Release;

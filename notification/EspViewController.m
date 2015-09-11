@@ -14,8 +14,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *tfEmail;
 @property (weak, nonatomic) IBOutlet UITextField *tfPassword;
 @property (weak, nonatomic) IBOutlet UILabel *labelStatus;
-@property (weak, nonatomic) IBOutlet UIButton *btnLoginLogout;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIButton *btnRegisterUnregister;
 @property (assign, nonatomic) __block BOOL isLogin;
+@property (assign, nonatomic) __block BOOL isRegister;
 @property (nonatomic, strong) UIButton *_doneButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @end
@@ -28,29 +30,48 @@
 
 @implementation EspViewController
 
-- (IBAction)tapLoginLogout:(id)sender {
-    if (self.isLogin)
+- (IBAction)tapLogin:(id)sender {
+    [self doLoginBtnAction];
+}
+
+- (IBAction)tapRegisterUnregister:(id)sender {
+    if (self.isRegister)
     {
-        [self doLogoutBtnAction];
+        [self doUnregisterAction];
     }
     else
     {
-        [self doLoginBtnAction];
+        [self doRegisterAction];
     }
 }
 
 - (void)enableLoginBtn
 {
     self.isLogin = NO;
-    [self.btnLoginLogout setTitle:@"Login" forState:UIControlStateNormal];
+    [self.btnLogin setTitle:@"Login" forState:UIControlStateNormal];
     self.labelStatus.text = @"Logout";
 }
 
-- (void)enableLogoutBtn
+- (void)loginSuc
 {
     self.isLogin = YES;
-    [self.btnLoginLogout setTitle:@"Logout" forState:UIControlStateNormal];
-    self.labelStatus.text = @"Login";
+    self.isRegister = NO;
+    self.labelStatus.text = @"Login/Unregister";
+    [self.btnRegisterUnregister setTitle:@"Register" forState:UIControlStateNormal];
+}
+
+- (void)enableRegisterBtn
+{
+    self.isRegister = NO;
+    [self.btnRegisterUnregister setTitle:@"Register" forState:UIControlStateNormal];
+    self.labelStatus.text = @"Login/Unregister";
+}
+
+- (void)enableUnregisterBtn
+{
+    self.isRegister = YES;
+    [self.btnRegisterUnregister setTitle:@"Unregister" forState:UIControlStateNormal];
+    self.labelStatus.text = @"Login/Register";
 }
 
 - (void)viewDidLoad
@@ -62,12 +83,13 @@
     self.tfEmail.keyboardType = UIKeyboardTypeASCIICapable;
     self.tfPassword.delegate = self;
     self.tfPassword.keyboardType = UIKeyboardTypeASCIICapable;
+    [self enableRegisterBtn];
     [self enableLoginBtn];
 }
 
 - (void)doLoginBtnAction
 {
-    NSLog(@"EspViewController loginBtnAction");
+    NSLog(@"EspViewController doLoginBtnAction");
     
     [self.indicator startAnimating];
     
@@ -83,19 +105,19 @@
         switch (loginResult)
         {
             case LOGIN_SUC:
-                NSLog(@"EspViewController loginBtnAction LOGIN_SUC");
+                NSLog(@"EspViewController doLoginBtnAction LOGIN_SUC");
                 alertViewMessage = @"login suc";
                 break;
             case LOGIN_PASSWORD_ERR:
-                NSLog(@"EspViewController loginBtnAction LOGIN_PASSWORD_ERR");
+                NSLog(@"EspViewController doLoginBtnAction LOGIN_PASSWORD_ERR");
                 alertViewMessage = @"login password error";
                 break;
             case LOGIN_NETWORK_UNACCESSIBLE:
-                NSLog(@"EspViewController loginBtnAction LOGIN_NETWORK_UNACCESSIBLE");
+                NSLog(@"EspViewController doLoginBtnAction LOGIN_NETWORK_UNACCESSIBLE");
                 alertViewMessage = @"login network unaccessible error";
                 break;
             case LOGIN_NOT_REGISTER:
-                NSLog(@"EspViewController loginBtnAction LOGIN_NOT_REGISTER");
+                NSLog(@"EspViewController doLoginBtnAction LOGIN_NOT_REGISTER");
                 alertViewMessage = @"login not register error";
                 break;
         }
@@ -106,33 +128,52 @@
             [self.indicator stopAnimating];
             if (loginResult==LOGIN_SUC)
             {
-                [self enableLogoutBtn];
+                [self loginSuc];
             }
         });
     });
 }
 
-- (void)doLogoutBtnAction
+- (void)doRegisterAction
 {
-    NSLog(@"EspViewController logoutBtnAction");
+    NSLog(@"EspViewController doRegisterAction");
+    if (!self.isLogin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Register" message:@"Please login firstly" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
     
     [self.indicator startAnimating];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
+        
         ESPUser *user = [ESPUser sharedInstance];
-        ESPLogoutResultEnum logoutResult = [user doActionInternetUserLogout];
-        NSString *alertViewTitle = @"Logout";
+        NSString *userKey = user.userKey;
+        NSString *apnsToken = user.apnsToken;
+        NSString *deviceToken = user.deviceToken;
+        ESPApnsRegisterResultEnum apnsRegisterResult = [user doActionInternetUserApnsRegisterWithUserKey:userKey AndApnsToken:apnsToken AndDeviceToken:deviceToken];
+        NSString *alertViewTitle = @"ApnsRegister";
         NSString *alertViewMessage = nil;
-        switch (logoutResult)
-        {
-            case LOGOUT_NETWORK_UNACCESSIBLE:
-                NSLog(@"EspViewController logoutBtnAction LOGOUT_NETWORK_UNACCESSIBLE");
-                alertViewMessage = @"logout network unaccessible error";
+        
+        switch (apnsRegisterResult) {
+            case APNS_REGISTER_APNS_TOKEN_ERR:
+                NSLog(@"EspViewController doRegisterAction APNS_REGISTER_APNS_TOKEN_ERR");
+                alertViewMessage = @"apns register apns token error";
                 break;
-            case LOGOUT_SUC:
-                NSLog(@"EspViewController logoutBtnAction LOGOUT_SUC");
-                alertViewMessage = @"logout suc";
+            case APNS_REGISTER_NETWORK_UNACCESSIBLE:
+                NSLog(@"EspViewController doRegisterAction APNS_REGISTER_NETWORK_UNACCESSIBLE");
+                alertViewMessage = @"apns register apns network unaccessible error";
+                break;
+            case APNS_REGISTER_SUC:
+                NSLog(@"EspViewController doRegisterAction APNS_REGISTER_SUC");
+                alertViewMessage = @"apns register suc";
+                break;
+            case APNS_REGISTER_USER_KEY_ERR:
+                NSLog(@"EspViewController doRegisterAction APNS_REGISTER_USER_KEY_ERR");
+                alertViewMessage = @"apns register user key error";
                 break;
         }
         
@@ -140,13 +181,62 @@
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:alertViewTitle message:alertViewMessage delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
             [alertView show];
             [self.indicator stopAnimating];
-            if (logoutResult==LOGOUT_SUC)
-            {
-                [self enableLoginBtn];
+            if (apnsRegisterResult==APNS_REGISTER_SUC) {
+                [self enableUnregisterBtn];
             }
         });
     });
 }
+
+- (void)doUnregisterAction
+{
+    NSLog(@"EspViewController doUnregisterAction");
+    if (!self.isLogin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Unregister" message:@"Please login firstly" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    
+    [self.indicator startAnimating];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        
+        ESPUser *user = [ESPUser sharedInstance];
+        NSString *apnsToken = user.apnsToken;
+        NSString *deviceToken = user.deviceToken;
+        ESPApnsUnregisterResultEnum apnsRegisterResult = [user doActionInternetUserApnsUnregisterWithApnsToken:apnsToken andDeviceToken:deviceToken];
+        NSString *alertViewTitle = @"ApnsUnregister";
+        NSString *alertViewMessage = nil;
+        
+        switch (apnsRegisterResult) {
+            case APNS_UNREGISTER_APNS_TOKEN_ERR:
+                NSLog(@"EspViewController doRegisterAction APNS_UNREGISTER_APNS_TOKEN_ERR");
+                alertViewMessage = @"apns unregister apns token error";
+                break;
+            case APNS_UNREGISTER_NETWORK_UNACCESSIBLE:
+                NSLog(@"EspViewController doRegisterAction APNS_UNREGISTER_NETWORK_UNACCESSIBLE");
+                alertViewMessage = @"apns unregister apns network unaccessible error";
+                break;
+            case APNS_UNREGISTER_SUC:
+                NSLog(@"EspViewController doRegisterAction APNS_UNREGISTER_SUC");
+                alertViewMessage = @"apns unregister suc";
+                break;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:alertViewTitle message:alertViewMessage delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
+            [alertView show];
+            [self.indicator stopAnimating];
+            if (apnsRegisterResult==APNS_REGISTER_SUC) {
+                [self enableRegisterBtn];
+            }
+        });
+    });
+}
+
 
 #pragma mark - the follow codes are just to make soft-keyboard disappear at necessary time
 

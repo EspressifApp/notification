@@ -11,6 +11,8 @@
 #include "EspUrlConstants.h"
 #include "EspEnum.h"
 
+#define APNS_TOKEN @"cbae56c8222c78862d95e4711a5a6fa566f75c8f"
+
 @implementation ESPUser
 
 #pragma mark - Single Pattern
@@ -34,22 +36,34 @@ static ESPUser *sharedInstance = nil;
     if(self)
     {
         // first init
+        self.apnsToken = APNS_TOKEN;
     }
     return self;
 }
 
-#pragma mark - implemet ESPActionInternetUserLoginDelegate
+#pragma mark - implement ESPActionInternetUserLoginDelegate
 -(ESPLoginResultEnum) doActionInternetUserLoginWithEmail: (NSString *) email
-                                               password : (NSString *) password
+                                                password: (NSString *) password
 {
-    id<ESPActionInternetUserLoginDelegate> actor =[ESPActionInternetUserLoginActor alloc];
-    return [actor doActionInternetUserLoginWithEmail:email password:password];
+    id<ESPActionInternetUserLoginDelegate> action =[ESPActionInternetUserLogin alloc];
+    return [action doActionInternetUserLoginWithEmail:email password:password];
 }
 
-#pragma mark - implemet ESPActionInternetUserLogoutDelegate
--(ESPLogoutResultEnum) doActionInternetUserLogout
+#pragma mark - implement ESPActionInternetUserApnsRegisterDelegate
+-(ESPApnsRegisterResultEnum) doActionInternetUserApnsRegisterWithUserKey: (NSString *) userKey
+                                                            AndApnsToken: (NSString *) apnsToken
+                                                          AndDeviceToken: (NSString *) deviceToken
 {
-    id<ESPActionInternetUserLogoutDelegate> actor = [ESPActionInternetUserLogoutActor alloc];
-    return [actor doActionInternetUserLogout];
+    id<EspActionInternetUserApnsRegisterDelegate> action = [EspActionInternetUserApnsRegister alloc];
+    return [action doActionInternetUserApnsRegisterWithUserKey:userKey AndApnsToken:apnsToken AndDeviceToken:deviceToken];
 }
+
+#pragma mark - implement ESPActionInternetUserApnsUnregisterDelegate
+-(ESPApnsUnregisterResultEnum) doActionInternetUserApnsUnregisterWithApnsToken: (NSString *) apnsToken
+                                                                andDeviceToken: (NSString *) deviceToken;
+{
+    id<EspActionInternetUserApnsUnregisterDelegate> action = [EspActionInternetUserApnsUnregister alloc];
+    return [action doActionInternetUserApnsUnregisterWithApnsToken:apnsToken andDeviceToken:deviceToken];
+}
+
 @end

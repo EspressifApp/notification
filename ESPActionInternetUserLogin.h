@@ -22,5 +22,5 @@
                                                password :(NSString *) password;
 @end
 
-@interface ESPActionInternetUserLoginActor : NSObject<ESPActionInternetUserLoginDelegate>
+@interface ESPActionInternetUserLogin : NSObject<ESPActionInternetUserLoginDelegate>
 @end
