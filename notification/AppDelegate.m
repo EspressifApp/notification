@@ -100,6 +100,37 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     NSLog(@"Remote notification arrived: %@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]);
+    
+//#pragma send a local notification
+//    UIApplication *app = [UIApplication sharedApplication];
+//    // remove all prior notifications
+//    NSArray *scheduled = [app scheduledLocalNotifications];
+//    if (scheduled)
+//    {
+//        [app cancelAllLocalNotifications];
+//    }
+//    
+//    // create a new notification
+//    UILocalNotification* alarm = [[UILocalNotification alloc]init];
+//    if (alarm)
+//    {
+//        alarm.fireDate = [NSDate date];
+//        alarm.timeZone = [NSTimeZone defaultTimeZone];
+//        alarm.repeatInterval = 0;
+//        alarm.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+//        [app scheduleLocalNotification:alarm];
+//    }
+    
+#pragma alert when app is active
+    UIApplication *app = [UIApplication sharedApplication];
+    if (app.applicationState == UIApplicationStateActive)
+    {
+        NSString *title = @"APNS Notification";
+        NSString *message = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+        NSString *cancelButtonTitle = @"I know";
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:title message:message delegate:nil cancelButtonTitle:cancelButtonTitle otherButtonTitles: nil];
+        [alertView show];
+    }
 }
 
 @end
