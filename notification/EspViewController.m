@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelStatus;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btnRegisterUnregister;
+@property (weak, nonatomic) IBOutlet UIButton *btnNotify;
 @property (assign, nonatomic) __block BOOL isLogin;
 @property (assign, nonatomic) __block BOOL isRegister;
 @property (nonatomic, strong) UIButton *_doneButton;
@@ -43,6 +44,10 @@
     {
         [self doRegisterAction];
     }
+}
+
+- (IBAction)tapNotify:(id)sender {
+    [self doNotifyAction];
 }
 
 - (void)enableLoginBtn
@@ -235,6 +240,51 @@
             }
         });
     });
+}
+
+- (void)doNotifyAction
+{
+    NSLog(@"EspViewController doNotifyAction");
+    
+    if (!self.isLogin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Notify" message:@"Please login firstly and register after that" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    if (!self.isRegister)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Notify" message:@"Please register" delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    [self.indicator startAnimating];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        ESPUser *user = [ESPUser sharedInstance];
+        NSString *userKey = user.userKey;
+        NSString *message = @"Hello Espressif IOT!!!";
+        ESPNotifyResultEnum notifyResult = [user doActionInternetUserNotifyWithUserkey:userKey andMessage:message];
+        NSString *alertViewTitle = @"Notify";
+        NSString *alertViewMessage = nil;
+        switch (notifyResult) {
+            case NOTIFY_NETWORK_UNACCESSIBLE:
+                alertViewMessage = @"notify network unaccessible error";
+                break;
+            case NOTIFY_SUC:
+                alertViewMessage = @"notify suc";
+                break;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:alertViewTitle message:alertViewMessage delegate:nil cancelButtonTitle:@"I know" otherButtonTitles:nil];
+            [alertView show];
+            [self.indicator stopAnimating];
+        });
+    });
+
 }
 
 

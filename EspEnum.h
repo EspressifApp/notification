@@ -37,4 +37,11 @@ typedef enum
     APNS_UNREGISTER_NETWORK_UNACCESSIBLE = -HTTP_STATUS_OK
 }ESPApnsUnregisterResultEnum;
 
+#pragma makrk - Notify Result Enum
+typedef enum
+{
+    NOTIFY_SUC = HTTP_STATUS_OK,
+    NOTIFY_NETWORK_UNACCESSIBLE = -HTTP_STATUS_OK
+}ESPNotifyResultEnum;
+
 #endif

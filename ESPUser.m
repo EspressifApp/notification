@@ -66,4 +66,12 @@ static ESPUser *sharedInstance = nil;
     return [action doActionInternetUserApnsUnregisterWithApnsToken:apnsToken andDeviceToken:deviceToken];
 }
 
+//-(ESPNotifyResultEnum) EspActionInternetUserNotifyDelegate: (NSString *) userKey andMessage: (NSString *) message;
+#pragma mark - implement EspActionInternetUserNotifyDelegate
+-(ESPNotifyResultEnum) doActionInternetUserNotifyWithUserkey: (NSString *) userKey andMessage: (NSString *) message
+{
+    id<EspActionInternetUserNotifyDelegate> action = [EspActionInternetUserNotifiy alloc];
+    return [action doActionInternetUserNotifyWithUserkey:userKey andMessage:message];
+}
+
 @end

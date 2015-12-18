@@ -11,6 +11,7 @@
 		073ED05D1BA00B2F00F0A39D /* ESPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED05C1BA00B2F00F0A39D /* ESPUser.m */; };
 		073ED0621BA00D8300F0A39D /* ESPActionInternetUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED0611BA00D8300F0A39D /* ESPActionInternetUserLogin.m */; };
 		073ED0681BA0139B00F0A39D /* EspViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073ED0671BA0139B00F0A39D /* EspViewController.m */; };
+		0765DB9B1C23D8EB00E650DE /* EspActionInternetUserNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 0765DB9A1C23D8EB00E650DE /* EspActionInternetUserNotify.m */; };
 		07CD440B1BA187F400D30921 /* EspActionInternetUserApnsRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD440A1BA187F400D30921 /* EspActionInternetUserApnsRegister.m */; };
 		07CD440E1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD440D1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m */; };
 		07FE88941B9D88DC00309C51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE88931B9D88DC00309C51 /* main.m */; };
@@ -43,6 +44,8 @@
 		073ED0661BA0139B00F0A39D /* EspViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspViewController.h; sourceTree = "<group>"; };
 		073ED0671BA0139B00F0A39D /* EspViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EspViewController.m; sourceTree = "<group>"; };
 		073ED0691BA0156000F0A39D /* EspUrlConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EspUrlConstants.h; sourceTree = "<group>"; };
+		0765DB991C23D8EB00E650DE /* EspActionInternetUserNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspActionInternetUserNotify.h; sourceTree = "<group>"; };
+		0765DB9A1C23D8EB00E650DE /* EspActionInternetUserNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EspActionInternetUserNotify.m; sourceTree = "<group>"; };
 		07CD44091BA187F400D30921 /* EspActionInternetUserApnsRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspActionInternetUserApnsRegister.h; sourceTree = "<group>"; };
 		07CD440A1BA187F400D30921 /* EspActionInternetUserApnsRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EspActionInternetUserApnsRegister.m; sourceTree = "<group>"; };
 		07CD440C1BA1880500D30921 /* EspActionInternetUserApnsUnregister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EspActionInternetUserApnsUnregister.h; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				07CD440A1BA187F400D30921 /* EspActionInternetUserApnsRegister.m */,
 				07CD440C1BA1880500D30921 /* EspActionInternetUserApnsUnregister.h */,
 				07CD440D1BA1880500D30921 /* EspActionInternetUserApnsUnregister.m */,
+				0765DB991C23D8EB00E650DE /* EspActionInternetUserNotify.h */,
+				0765DB9A1C23D8EB00E650DE /* EspActionInternetUserNotify.m */,
 			);
 			name = espdemo;
 			sourceTree = "<group>";
@@ -202,7 +207,7 @@
 		07FE88861B9D88DC00309C51 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "白 桦";
 				TargetAttributes = {
 					07FE888D1B9D88DC00309C51 = {
@@ -265,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0765DB9B1C23D8EB00E650DE /* EspActionInternetUserNotify.m in Sources */,
 				073ED05D1BA00B2F00F0A39D /* ESPUser.m in Sources */,
 				07CD440B1BA187F400D30921 /* EspActionInternetUserApnsRegister.m in Sources */,
 				073ED0591BA0046A00F0A39D /* ESPHttpClient.m in Sources */,
@@ -335,6 +341,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -407,6 +414,7 @@
 				INFOPLIST_FILE = notification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -422,6 +430,7 @@
 				INFOPLIST_FILE = notification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -444,6 +453,7 @@
 				);
 				INFOPLIST_FILE = notificationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notification.app/notification";
@@ -462,6 +472,7 @@
 				);
 				INFOPLIST_FILE = notificationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/notification.app/notification";

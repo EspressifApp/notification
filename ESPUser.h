@@ -12,8 +12,11 @@
 #include "ESPActionInternetUserLogin.h"
 #include "EspActionInternetUserApnsRegister.h"
 #include "EspActionInternetUserApnsUnregister.h"
+#include "EspActionInternetUserNotify.h"
 
-@interface ESPUser : NSObject<ESPActionInternetUserLoginDelegate,EspActionInternetUserApnsRegisterDelegate,EspActionInternetUserApnsUnregisterDelegate>
+
+@interface ESPUser : NSObject<ESPActionInternetUserLoginDelegate,EspActionInternetUserApnsRegisterDelegate,EspActionInternetUserApnsUnregisterDelegate
+,EspActionInternetUserNotifyDelegate>
 
 + (ESPUser *) sharedInstance;
 

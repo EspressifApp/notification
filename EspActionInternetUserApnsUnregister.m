@@ -19,7 +19,7 @@
     NSLog(@"doActionInternetUserApnsUnregister::apnsToken=%@,deviceToken=%@",apnsToken,deviceToken);
     
     // generate url
-    NSString *httpUrl = [NSString stringWithFormat:@"http://iot.espressif.cn/v1/pns/peer/?action=unregister&pns_token=apns-%@&peer_token=%@",apnsToken,deviceToken];
+    NSString *httpUrl = [NSString stringWithFormat:@"https://iot.espressif.cn/v1/pns/peer/?action=unregister&pns_token=apns-%@&peer_token=%@",apnsToken,deviceToken];
     
     // get http response
     NSDictionary *httpResponse = [ESPHttpClient postSynPath:httpUrl headers:nil parameters:nil timeoutSeconds:ESP_SERVER_TIMEOUT_SECONDS];
