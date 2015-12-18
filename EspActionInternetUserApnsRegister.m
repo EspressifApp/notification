@@ -20,7 +20,7 @@
     NSLog(@"doActionInternetUserUserKey::userKey=%@,apnsToken=%@,deviceToken=%@",userKey,apnsToken,deviceToken);
     
     // generate url
-    NSString *httpUrl = [NSString stringWithFormat:@"http://iot.espressif.cn/v1/pns/peer/?action=register&pns_token=apns-%@&peer_token=%@",apnsToken,deviceToken];
+    NSString *httpUrl = [NSString stringWithFormat:@"https://iot.espressif.cn/v1/pns/peer/?action=register&pns_token=apns-%@&peer_token=%@",apnsToken,deviceToken];
     NSString *headerToken = [NSString stringWithFormat:@"token %@",userKey];
     // generate http header
     NSDictionary *httpHeader = [NSDictionary dictionaryWithObject:headerToken forKey:@"Authorization"];
