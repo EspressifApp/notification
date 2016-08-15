@@ -11,7 +11,7 @@
 #include "EspUrlConstants.h"
 #include "EspEnum.h"
 
-#define APNS_TOKEN @"cbae56c8222c78862d95e4711a5a6fa566f75c8f"
+#define APNS_TOKEN @"dafc628ed4004c4752fc2f1d8df4f5c4ac7ddf51"
 
 @implementation ESPUser
 

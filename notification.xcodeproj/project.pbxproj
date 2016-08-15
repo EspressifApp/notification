@@ -212,7 +212,7 @@
 				TargetAttributes = {
 					07FE888D1B9D88DC00309C51 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = QWY5DY832N;
+						DevelopmentTeam = QWXF6GB4AV;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 0;
@@ -414,7 +414,7 @@
 				INFOPLIST_FILE = notification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.demo.notification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,7 +430,7 @@
 				INFOPLIST_FILE = notification/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.espressif.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.espressif.demo.notification;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
